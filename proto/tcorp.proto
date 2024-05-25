@@ -1,0 +1,50 @@
+syntax="proto3";
+option go_package = "TCorp/proto;protocorp";
+
+service UserInfo{
+	rpc GetUserById(GetUserByIdRequest)returns (GetUserByIdRespnose);
+	rpc GetUserByIds(GetUserByIdsRequest) returns (GetUserByIdsResponse);
+	rpc SearchUser(SearchUserRequest) returns (SearchUserResponse);
+}
+message SearchUserResponse {
+	int64 total = 1;
+	repeated UserModel data = 2;
+}
+
+message SearchUserRequest {
+	repeated SearchFilter filter = 1;
+}
+
+message GetUserByIdRequest{
+    int32 id=1;
+}
+
+message GetUserByIdRespnose{
+	UserModel user =1;
+}
+
+message UserModel{
+    int32  id=1;
+	string  name = 2;
+	string  city=3;
+	string   phone =4;
+	float height=5;
+	bool   married=6;
+
+}
+
+message GetUserByIdsRequest{
+    repeated int32 id=1;
+}
+
+
+message GetUserByIdsResponse{
+	repeated UserModel user =1;
+}
+
+
+message SearchFilter {
+	string key = 1;
+	string value = 2;
+}
+

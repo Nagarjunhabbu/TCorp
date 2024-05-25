@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  httpservice:
+    build:
+      context: .
+      dockerfile: DockerfileApi
+    hostname: httpservice
+    ports:
+      - "8000:8000"
+
+  grpcservice:
+    build:
+      context: .
+      dockerfile: DockerfileGrpc
+    hostname: grpcservice
+    ports:
+      - "5001:5001"
+
+

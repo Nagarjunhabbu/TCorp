@@ -1,0 +1,8 @@
+build-deps:
+	go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+	go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+
+
+build-proto-root: build-deps
+	mkdir -p ./
+	protoc --go_out=paths=source_relative:./protocorp --go-grpc_out=require_unimplemented_servers=false,paths=source_relative:./protocorp --proto_path=./ ./*.proto
